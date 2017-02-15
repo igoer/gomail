@@ -56,11 +56,11 @@ func main() {
     // 设置收件人账户列表
     msg.SetHeader("To", "***@163.com", "***@foxmail.com")
     // 设置抄送
-    //msg.SetAddressHeader("Cc", "***@example.com", "Dan")
+    msg.SetAddressHeader("Cc", "***@example.com", "Dan")
     // 设置邮件标题
-    msg.SetHeader("Subject", "Computer Open!")
+    msg.SetHeader("Subject", "Hello!")
     // 设置邮件内容
-    msg.SetBody("text/html", "Hello your computer is open time: <b>" + time.Now().Format("2006-01-02 15:04:05") + "</b>")
+    msg.SetBody("text/html", "gomail <b>hello</b>")
 
     // 创建邮件发送Dialer
     mailer := gomail.NewDialer("smtp.163.com", 25, "username", "password")
