@@ -40,6 +40,37 @@ https://godoc.org/gopkg.in/gomail.v2
 ## Examples
 
 See the [examples in the documentation](https://godoc.org/gopkg.in/gomail.v2#example-package).
+```go
+package main
+
+import(
+    "github.com/go-gomail/gomail"
+    "log"
+    "time"
+)
+
+func main() {
+    msg := gomail.NewMessage()
+    // 设置发件人账户
+    msg.SetHeader("From", "***@163.com")
+    // 设置收件人账户列表
+    msg.SetHeader("To", "***@163.com", "***@foxmail.com")
+    // 设置抄送
+    //msg.SetAddressHeader("Cc", "***@example.com", "Dan")
+    // 设置邮件标题
+    msg.SetHeader("Subject", "Computer Open!")
+    // 设置邮件内容
+    msg.SetBody("text/html", "Hello your computer is open time: <b>" + time.Now().Format("2006-01-02 15:04:05") + "</b>")
+
+    // 创建邮件发送Dialer
+    mailer := gomail.NewDialer("smtp.163.com", 25, "username", "password")
+    if err := mailer.DialAndSend(msg); err != nil {
+        log.Println(err)
+    }
+    
+    log.Println("email send complate")
+}
+```
 
 
 ## FAQ
